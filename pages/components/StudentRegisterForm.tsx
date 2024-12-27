@@ -23,6 +23,7 @@ const RegisterStudentForm = () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization' : 'Bearer admin',
             },
             body: JSON.stringify(formData),
           });

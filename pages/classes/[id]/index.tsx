@@ -6,7 +6,9 @@ export const revalidate = 10;
 
 // This function generates the static paths for your dynamic routes.
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3001/classes');
+  const res = await fetch('http://localhost:3001/classes',  {
+    headers: [["Authorization", "Bearer admin"]],
+  });
   const classes: Class[] = await res.json();
 
   // Generate a path for each class
@@ -24,7 +26,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const classId = params.id;
   
-  const res = await fetch(`http://localhost:3001/classes/${classId}`);
+  const res = await fetch(`http://localhost:3001/classes/${classId}`,  {
+    headers: [["Authorization", "Bearer admin"]],
+  });
   const c: Class = await res.json();
 
   return {

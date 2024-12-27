@@ -104,6 +104,7 @@ export const getServerSideProps: GetServerSideProps<{ students: Student[] }> = a
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization' : 'Bearer admin',
             },
             body: JSON.stringify({ name: studentName }),
         });
@@ -115,6 +116,7 @@ export const getServerSideProps: GetServerSideProps<{ students: Student[] }> = a
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization' : 'Bearer admin',
             },
             body: JSON.stringify({ className: className }),
         });
@@ -122,7 +124,9 @@ export const getServerSideProps: GetServerSideProps<{ students: Student[] }> = a
     }
 
     else {
-        const res = await fetch("http://localhost:3001/students/");
+        const res = await fetch("http://localhost:3001/students/", {
+            headers: [["Authorization", "Bearer admin"]],
+          });
         students = res.ok ? await res.json() : [];
     }
 

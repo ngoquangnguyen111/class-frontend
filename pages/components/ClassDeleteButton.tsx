@@ -15,6 +15,9 @@ const DeleteClassButton = ({classId} : ClassDeleteButtonProps) => {
             try {
                 const response = await fetch(`http://localhost:3001/classes/${classId}`, {
                     method: 'DELETE',
+                    headers: {
+                        'Authorization' : 'Bearer admin',
+                    },
                 });
 
                 if (response.ok) {

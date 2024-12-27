@@ -14,6 +14,9 @@ const DeleteStudentButton = ({studentId} : StudentDeleteButtonProps) => {
             try {
                 const response = await fetch(`http://localhost:3001/students/${studentId}`, {
                     method: 'DELETE',
+                    headers: {
+                        'Authorization' : 'Bearer admin',
+                    },
                 });
 
                 if (response.ok) {

@@ -7,7 +7,9 @@ import DeleteStudentButton from '@/pages/components/DeleteStudentButton';
 export const revalidate = 10;
 
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3001/students');
+  const res = await fetch('http://localhost:3001/students', {
+    headers: [["Authorization", "Bearer admin"]],
+  } );
   const students: Student[] = await res.json();
 
   // Generate a path for each class
@@ -23,7 +25,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const studentId = params.id;
   
-  const res = await fetch(`http://localhost:3001/students/${studentId}`);
+  const res = await fetch(`http://localhost:3001/students/${studentId}`, {
+    headers: [["Authorization", "Bearer admin"]],
+  });
   const student: Student = await res.json();
 
   return {

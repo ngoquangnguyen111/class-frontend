@@ -62,7 +62,9 @@ export const getServerSideProps: GetServerSideProps<{ classes: Class[] }> = asyn
 
 
 
-    const res = await fetch("http://localhost:3001/classes/");
+    const res = await fetch("http://localhost:3001/classes/", {
+        headers: [["Authorization", `Bearer admin`]],
+      }   );
     classes = res.ok ? await res.json() : [];
 
 
